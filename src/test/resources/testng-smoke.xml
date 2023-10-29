@@ -5,7 +5,7 @@
 
     <test name="">
         <classes>
-            <class name=""></class>
+<!--            <class name=""></class>-->
         </classes>
     </test>
 </suite>
