@@ -12,6 +12,131 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <surefire.version>3.0.0-M5</surefire.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
+        <slf4j-simple.version>1.7.32</slf4j-simple.version>
+        <testng.version>7.0.0</testng.version>
+        <selenium-java.version>4.11.0</selenium-java.version>
+        <webdrivermanager.version>5.4.1</webdrivermanager.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
+        <allure-testng.version>2.14.0</allure-testng.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <allure-java-commons>2.14.0</allure-java-commons>
+        <lombok.version>1.18.30</lombok.version>
+        <log4j-core.version>2.20.0</log4j-core.version>
+        <jackson-dataformat-yaml.version>2.15.2</jackson-dataformat-yaml.version>
     </properties>
-    
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar -Xmx256m
+                    </argLine>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectjweaver.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven-->
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-simple.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>${allure-java-commons}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson-dataformat-yaml.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
