@@ -12,7 +12,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
-import static utils.Waiter.WAIT_2_SECONDS;
+import static utils.Waiter.WAIT_5_SECONDS;
 
 @NoArgsConstructor
 @Log4j2
@@ -54,7 +54,7 @@ public class WebdriverFactory {
             }
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_2_SECONDS));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_5_SECONDS));
         return driver;
     }
 }

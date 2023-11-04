@@ -7,7 +7,7 @@ pipeline {
       jdk "java"
    }
     triggers {
-        cron('0 8 * * *')
+        cron('0 * * * *')
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'develop', name: 'BRANCH', type: 'PT_BRANCH'
