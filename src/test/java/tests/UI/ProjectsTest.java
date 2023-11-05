@@ -5,18 +5,17 @@ import jdk.jfr.Description;
 import model.Project;
 import model.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.CurrentProjectPage;
 import service.CurrentProjectPageService;
 import service.LoginPageService;
-import service.ProjectsServicePage;
+import service.ProjectsPageService;
 import tests.base.BaseTest;
 
 public class ProjectsTest extends BaseTest {
 
-    private ProjectsServicePage projectsServicePage;
+    private ProjectsPageService projectsPageService;
+    private CurrentProjectPageService currentProjectPageService;
 
     @BeforeMethod
     @Description("Sign into the www.qase.io")
@@ -27,24 +26,24 @@ public class ProjectsTest extends BaseTest {
                 .signIn(user);
     }
 
-    @Test(groups = {"Create new project"})
-    @Description("Create new test project with public access")
+    @Test(description = "Create new test project with public access")
+    @Description("Create public test project")
     public void checkCreateNewPublicProjectTest() {
         Project project = Project.builder()
                 .name(new Faker().name().title())
-                    .description("Create new test public project")
+                .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        projectsServicePage = new ProjectsServicePage();
-        projectsServicePage.createNewPublicProject(project);
-        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
+        projectsPageService = new ProjectsPageService();
+        projectsPageService.createNewPublicProject(project);
+        currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
-        String expectedProjectTitle = project.getName();
-        Assert.assertEquals(actualProjectTitle, expectedProjectTitle, "Project don't created");
+        projectsPageService.removeProject(project.getName());
+        Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
-    @Test(groups = {"Create new project"})
-    @Description("Create new test project with private access")
+    @Test(description = "Create new test project with private access")
+    @Description("Create new private project")
     public void checkCreateNewPrivateProjectAsOwnerTest() {
         Project project = Project.builder()
                 .name(new Faker().name().title())
@@ -52,37 +51,28 @@ public class ProjectsTest extends BaseTest {
                 .accessType("Private")
                 .membersAccessType("Add members from specific group")
                 .build();
-        projectsServicePage = new ProjectsServicePage();
-        projectsServicePage.createNewPrivateProject(project);
-        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
+        projectsPageService = new ProjectsPageService();
+        projectsPageService.createNewPrivateProject(project);
+        currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
-        String expectedProjectTitle = project.getName();
-        Assert.assertEquals(actualProjectTitle, expectedProjectTitle, "Project don't created");
+        projectsPageService.removeProject(project.getName());
+        Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
-    @Test
-    @Description("Remove project from project page")
+    @Test(description = "Remove project from project page")
+    @Description("Remove project")
     public void checkRemoveProjectTest() {
         Project project = Project.builder()
                 .name(new Faker().name().title())
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        projectsServicePage = new ProjectsServicePage();
-        projectsServicePage.createNewPublicProject(project);
-        CurrentProjectPage currentProjectPage = new CurrentProjectPage();
-        currentProjectPage.openProjectsPage();
-        projectsServicePage.removeProject(projectsServicePage.getProjectTitle());
-        boolean isProjectListIsNotBeenDisplayed = projectsServicePage.isProjectListBeenNotDisplayed();
-        Assert.assertTrue(isProjectListIsNotBeenDisplayed, "Projects have not been deleted");
-    }
-
-    @AfterMethod(onlyForGroups = {"Create new project"})
-    @Description("Delete created test project")
-    public void cleanUp() {
-        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
+        projectsPageService = new ProjectsPageService();
+        projectsPageService.createNewPublicProject(project);
+        currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
-        projectsServicePage = new ProjectsServicePage();
-        projectsServicePage.removeProject(projectsServicePage.getProjectTitle());
+        projectsPageService.removeProject(project.getName());
+        boolean isProjectNotDisplayed = projectsPageService.isProjectNotDisplayed(project.getName());
+        Assert.assertTrue(isProjectNotDisplayed, "Projects have not been deleted");
     }
 }

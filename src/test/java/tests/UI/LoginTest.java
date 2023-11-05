@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.LoginPageService;
-import service.ProjectsServicePage;
+import service.ProjectsPageService;
 import tests.base.BaseTest;
 
 import static page.LoginPage.EMAIL_LABEL;
@@ -29,8 +29,8 @@ public class LoginTest extends BaseTest {
     public void checkSuccessfulSignInWithValidDataTest() {
         User user = new User("mailundtest.1@gmail.com", ";sdt<TKFHECM13!");
         loginPageService.signIn(user);
-        ProjectsServicePage projectsServicePage = new ProjectsServicePage();
-        boolean expectedPageIsOpened = projectsServicePage.isProjectPageOpened();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
+        boolean expectedPageIsOpened = projectsPageService.isProjectPageOpened();
         Assert.assertTrue(expectedPageIsOpened, "Sign in failed");
     }
 

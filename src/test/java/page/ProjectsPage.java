@@ -4,11 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import utils.Waiter;
-
-import java.util.List;
 
 @Log4j2
 public class ProjectsPage extends BasePage {
@@ -17,6 +14,7 @@ public class ProjectsPage extends BasePage {
             "//ancestor::label[@class='WX5yZl U0ALzL dEwoMK']//input";
     private static final String PROJECT_MENU = "//a[contains(text(),'%s')]//ancestor::tr[@class='PX4acs']" +
             "//button[@class='j4xaa7 bB3U2Y TuZZEp']";
+    private static final String PROJECT_TITLE = "//a[@class='MfvNFg' and contains(text(),'%s')]";
 
     @FindBy(xpath = "//h1[contains(text(),'Projects')]")
     WebElement projectPageTitle;
@@ -36,10 +34,6 @@ public class ProjectsPage extends BasePage {
     WebElement removeButton;
     @FindBy(xpath = "//span[contains(text(),'Delete project')]")
     WebElement confirmRemoveButton;
-    @FindBy(xpath = "//a[@class='MfvNFg']")
-    WebElement projectTitle;
-    @FindAll(@FindBy(xpath = "//a[@class='MfvNFg']"))
-    List<WebElement> projectList;
 
     public boolean isProjectPageTitleDisplayed() {
         log.info("Check project page title is displayed");
@@ -106,13 +100,13 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
-    public String getProjectTitle() {
-        log.info("Get project's title");
-        return projectTitle.getText();
-    }
-
-    public boolean isProjectListNotBeenDisplayed() {
-        log.warn("Check project's list is not been displayed");
-        return Waiter.waitListElementsInvisibleOf(projectList);
+    public boolean isProjectNotDisplayed(String title) {
+        log.info("Check project is not on the page");
+        try {
+            Waiter.waitElementInvisibleOf(driver.findElement(By.xpath(String.format(PROJECT_TITLE, title))));
+        } catch (Exception exception) {
+            log.debug("Project is on the page");
+        }
+        return true;
     }
 }

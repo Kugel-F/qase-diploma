@@ -6,7 +6,7 @@ import model.Project;
 import page.ProjectsPage;
 
 @Log4j2
-public class ProjectsServicePage {
+public class ProjectsPageService {
 
     private ProjectsPage projectsPage;
 
@@ -45,8 +45,10 @@ public class ProjectsServicePage {
     }
 
     @Step("Remove project")
-    public ProjectsServicePage removeProject(String title) {
+    public ProjectsPageService removeProject(String title) {
         log.info("Remove project");
+        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
+        currentProjectPageService.openProjectsPage();
         projectsPage = new ProjectsPage();
         projectsPage.clickProjectMenu(title)
                 .removeProject()
@@ -54,17 +56,10 @@ public class ProjectsServicePage {
         return this;
     }
 
-    @Step("Get project title")
-    public String getProjectTitle() {
-        log.info("Get current project title");
+    @Step("Check project is not on the page")
+    public boolean isProjectNotDisplayed(String title) {
+        log.info("Check project is not on the page");
         projectsPage = new ProjectsPage();
-        return projectsPage.getProjectTitle();
-    }
-
-    @Step("Check project's list is not been displayed")
-    public boolean isProjectListBeenNotDisplayed() {
-        log.info("Check project's list is not been displayed");
-        projectsPage = new ProjectsPage();
-        return projectsPage.isProjectListNotBeenDisplayed();
+        return projectsPage.isProjectNotDisplayed(title);
     }
 }
