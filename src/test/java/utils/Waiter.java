@@ -34,4 +34,10 @@ public class Waiter {
         return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
                 .until(ExpectedConditions.visibilityOf(element));
     }
+
+    public static boolean waitElementInvisibleOf(WebElement element) {
+
+        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
+                .until(ExpectedConditions.invisibilityOf(element));
+    }
 }
