@@ -28,22 +28,22 @@ public class LoginPageService {
     }
 
     @Step("Get message about fulfilling workEmail field")
-    public String getRequirementFulfillWorkEmailMessageText(String fieldMarker) {
+    public String getRequirementFulfillWorkEmailMessageText(String label) {
         log.info("Get fulfilling email field message");
         loginPage = new LoginPage();
-        return loginPage.getRequirementFulfillFieldMessageText(fieldMarker);
+        return loginPage.getRequirementFulfillFieldMessageText(label);
     }
 
     @Step("Get message about fulfilling password field")
-    public String getRequirementFulfillPasswordMessageText(String fieldMarker) {
+    public String getRequirementFulfillPasswordMessageText(String label) {
         log.info("Get fulfilling password field message");
         loginPage = new LoginPage();
-        return loginPage.getRequirementFulfillFieldMessageText(fieldMarker);
+        return loginPage.getRequirementFulfillFieldMessageText(label);
     }
 
     @Step("Get message while input invalid user's data")
     public String getInvalidDataMessageText() {
-        log.info("get invalid data message text");
+        log.info("Get invalid data message text");
         loginPage = new LoginPage();
         return loginPage.getInvalidDataMessageText();
     }

@@ -5,11 +5,12 @@ import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import service.LoginPageService;
 import service.ProjectsServicePage;
 import tests.base.BaseTest;
 
+import static page.LoginPage.EMAIL_LABEL;
+import static page.LoginPage.PASSWORD_FIELD_LABEL;
 import static utils.StringConstants.*;
 
 public class LoginTest extends BaseTest {
@@ -22,7 +23,6 @@ public class LoginTest extends BaseTest {
         loginPageService = new LoginPageService();
         loginPageService.openLoginPage();
     }
-
 
     @Test(priority = -1)
     @Description("Check sign into the www.qase.io with valid data")
@@ -39,9 +39,8 @@ public class LoginTest extends BaseTest {
     public void checkEmailShouldBeRequired() {
         User user = new User(EMPTY_FIELD, ";sdt<TKFHECM13!");
         loginPageService.signIn(user);
-        String emailFieldMarker = "text";
-        String actualMessage = loginPageService.getRequirementFulfillWorkEmailMessageText(emailFieldMarker);
-        Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE,"Message is not been displayed");
+        String actualMessage = loginPageService.getRequirementFulfillWorkEmailMessageText(EMAIL_LABEL);
+        Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE, "Message is not been displayed");
     }
 
     @Test()
@@ -49,9 +48,8 @@ public class LoginTest extends BaseTest {
     public void checkPasswordShouldBeRequiredTest() {
         User user = new User("mailundtest.1@gmail.com", EMPTY_FIELD);
         loginPageService.signIn(user);
-        String passwordFieldMarker = "password";
-        String actualMessage = loginPageService.getRequirementFulfillPasswordMessageText(passwordFieldMarker);
-        Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE,"Message is not been displayed");
+        String actualMessage = loginPageService.getRequirementFulfillPasswordMessageText(PASSWORD_FIELD_LABEL);
+        Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE, "Message is not been displayed");
     }
 
     @Test()

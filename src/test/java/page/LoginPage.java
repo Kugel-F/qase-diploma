@@ -8,10 +8,11 @@ import org.openqa.selenium.support.FindBy;
 @Log4j2
 public class LoginPage extends BasePage {
 
+    public static final String EMAIL_LABEL = "text";
+    public static final String PASSWORD_FIELD_LABEL = "password";
     private static final String LOGIN_PAGE_URL = "https://app.qase.io/login";
     private static final String NEED_FULFILL_FIELD_MESSAGE = "//input[@type='%s']" +
             "//ancestor::div[@class='tdishH']//small";
-
     @FindBy(xpath = "//input[@type='text']")
     WebElement workEmailInput;
     @FindBy(xpath = "//input[@type='password']")
@@ -22,9 +23,9 @@ public class LoginPage extends BasePage {
     WebElement invalidDataMessage;
 
     public LoginPage openPage() {
-       log.info("Open www.qase.io");
-       driver.get(LOGIN_PAGE_URL);
-       return this;
+        log.info("Open www.qase.io");
+        driver.get(LOGIN_PAGE_URL);
+        return this;
     }
 
     public LoginPage emailInput(String workEmail) {
@@ -45,9 +46,9 @@ public class LoginPage extends BasePage {
         return new ProjectsPage();
     }
 
-    public String getRequirementFulfillFieldMessageText (String fieldMarker) {
+    public String getRequirementFulfillFieldMessageText(String Label) {
         log.info("Get message about fulfilling field");
-        return driver.findElement(By.xpath(String.format(NEED_FULFILL_FIELD_MESSAGE, fieldMarker))).getText();
+        return driver.findElement(By.xpath(String.format(NEED_FULFILL_FIELD_MESSAGE, Label))).getText();
     }
 
     public String getInvalidDataMessageText() {
