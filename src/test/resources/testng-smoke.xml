@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTest" parallel="tests" thread-count="2">
+<suite name="SmokeTest" parallel="tests" thread-count="3">
 
-    <test name="Login tests">
+    <test name="Login Tests">
         <classes>
             <class name="tests.UI.LoginTest"/>
         </classes>
     </test>
-
-    <test name="Project Test">
+    <test name="Project Tests">
         <classes>
             <class name="tests.UI.ProjectsTest"/>
+        </classes>
+    </test>
+    <test name="Suite Tests">
+        <classes>
+            <class name="tests.UI.SuiteTest"/>
         </classes>
     </test>
 </suite>
