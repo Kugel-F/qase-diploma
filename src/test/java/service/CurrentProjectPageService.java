@@ -56,4 +56,12 @@ public class CurrentProjectPageService {
                 .submitDeleteSuiteButton();
         return this;
     }
+
+    @Step("Open create test case page")
+    public CurrentProjectPageService clickCreateTestCaseButton() {
+        log.info("Open create test case page");
+        currentProjectPage = new CurrentProjectPage();
+        currentProjectPage.clickCreateTestCaseButton();
+        return this;
+    }
 }

@@ -46,6 +46,7 @@ public class SuiteTest extends BaseTest {
                 .description("New test suite")
                 .preconditions("Some preconditions").build();
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
+        currentProjectPageService = new CurrentProjectPageService();
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(suite.getName());
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuiteDisplayed, "Suite has not been created");
@@ -67,6 +68,7 @@ public class SuiteTest extends BaseTest {
                 .description("New test suite")
                 .preconditions("Some preconditions").build();
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
+        currentProjectPageService = new CurrentProjectPageService();
         boolean isSuitNotDisplayed = currentProjectPageService.isSuiteIsNotDisplayed(suite.getName());
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuitNotDisplayed, "Suite has not been deleted");

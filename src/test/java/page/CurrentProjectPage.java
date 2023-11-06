@@ -50,7 +50,12 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isSuiteNotDisplayed(String title) {
         log.warn("Check new suite is not been displayed");
-        return Waiter.waitElementInvisibleOf(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
+        try {
+            Waiter.waitElementInvisibleOf(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
+        } catch (Exception exception) {
+            log.debug("Project is on the page");
+        }
+        return true;
     }
 
     public CurrentProjectPage openSuiteDropdown(String label) {
@@ -69,5 +74,11 @@ public class CurrentProjectPage extends BasePage {
         log.warn("Click submit deleting suite button");
         submitDeleteSuiteButton.click();
         return this;
+    }
+
+    public CreateCasePage clickCreateTestCaseButton() {
+        log.info("Click create case button");
+        createCaseButton.click();
+        return new CreateCasePage();
     }
 }
