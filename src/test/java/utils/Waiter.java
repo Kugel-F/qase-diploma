@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -26,6 +27,12 @@ public class Waiter {
 
         return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
                 .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static List<WebElement> waitVisibleALLOf(List<WebElement> elements) {
+
+        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
+                .until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
     public static boolean waitElementInvisibleOf(WebElement element) {
