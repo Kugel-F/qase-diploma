@@ -11,7 +11,7 @@ import tests.base.BaseTest;
 
 import static page.LoginPage.EMAIL_LABEL;
 import static page.LoginPage.PASSWORD_FIELD_LABEL;
-import static utils.StringConstants.*;
+import static utils.Constants.*;
 
 public class LoginTest extends BaseTest {
 

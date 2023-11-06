@@ -18,4 +18,9 @@
             <class name="tests.UI.SuiteTest"/>
         </classes>
     </test>
+    <test name="Case Tests">
+        <classes>
+            <class name="tests.UI.CaseTest"/>
+        </classes>
+    </test>
 </suite>

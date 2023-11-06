@@ -71,8 +71,8 @@ public class ProjectsTest extends BaseTest {
         projectsPageService.createNewPublicProject(project);
         currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
-        projectsPageService.removeProject(project.getName());
         boolean isProjectNotDisplayed = projectsPageService.isProjectNotDisplayed(project.getName());
+        projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isProjectNotDisplayed, "Projects have not been deleted");
     }
 }
