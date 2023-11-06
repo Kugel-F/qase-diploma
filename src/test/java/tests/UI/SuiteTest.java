@@ -8,10 +8,7 @@ import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.CurrentProjectPageService;
-import service.LoginPageService;
-import service.ProjectsPageService;
-import service.SuiteModalPageService;
+import service.*;
 import tests.base.BaseTest;
 
 import static page.SuiteModalPage.DESCRIPTION_LABEL;
@@ -38,8 +35,8 @@ public class SuiteTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
                 .name(new Faker().name().title())
@@ -48,6 +45,7 @@ public class SuiteTest extends BaseTest {
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         currentProjectPageService = new CurrentProjectPageService();
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(suite.getName());
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuiteDisplayed, "Suite has not been created");
     }
@@ -60,8 +58,8 @@ public class SuiteTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
                 .name(new Faker().name().title())
@@ -70,6 +68,7 @@ public class SuiteTest extends BaseTest {
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         currentProjectPageService = new CurrentProjectPageService();
         boolean isSuitNotDisplayed = currentProjectPageService.isSuiteIsNotDisplayed(suite.getName());
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuitNotDisplayed, "Suite has not been deleted");
     }

@@ -11,7 +11,8 @@ import org.testng.annotations.Test;
 import service.*;
 import tests.base.BaseTest;
 
-import static utils.Constants.*;
+import static utils.Constants.CONFIRM;
+import static utils.Constants.TWO;
 
 public class CaseTest extends BaseTest {
 
@@ -33,8 +34,8 @@ public class CaseTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         Case testCase = Case.builder()
                 .title(new Faker().name().title())
                 .build();
@@ -42,6 +43,7 @@ public class CaseTest extends BaseTest {
         createCasePageService.createTestCaseWithoutAllRequireAttribute(testCase);
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         String actualCaseTitle = currentProjectPageService.getNewTestCaseTitle();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertEquals(actualCaseTitle, testCase.getTitle(), "Test case don't been created");
     }
@@ -54,13 +56,14 @@ public class CaseTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openCreateCaseForm();
         createCasePageService = new CreateCasePageService();
         createCasePageService.clickBackspaceButton();
         boolean isNewCaseButtonDisplayed = currentProjectPageService.isNewCaseButtonDisplayed();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isNewCaseButtonDisplayed, "Current project page is not opened");
     }
@@ -73,8 +76,8 @@ public class CaseTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         Case firstTestCase = Case.builder()
                 .title(new Faker().name().title())
                 .build();
@@ -86,6 +89,7 @@ public class CaseTest extends BaseTest {
         createCasePageService.createTestCaseWithoutAllRequireAttribute(secondTestCase);
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         int actualTestCasesAmount = currentProjectPageService.getTestCasesAmount();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertEquals(actualTestCasesAmount, TWO, "Wrong test cases amount were created");
     }
@@ -98,8 +102,8 @@ public class CaseTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         Case testCase = Case.builder()
                 .title(new Faker().name().title())
                 .build();
@@ -108,6 +112,7 @@ public class CaseTest extends BaseTest {
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.deleteTestCase(testCase.getTitle(), CONFIRM);
         boolean isTestCasesTitleNotDisplayed = currentProjectPageService.isNotDisplayed();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isTestCasesTitleNotDisplayed, "Wrong test cases amount were created");
     }

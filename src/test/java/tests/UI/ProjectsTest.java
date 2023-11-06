@@ -9,12 +9,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.CurrentProjectPageService;
 import service.LoginPageService;
+import service.ProjectModalPageService;
 import service.ProjectsPageService;
 import tests.base.BaseTest;
 
 public class ProjectsTest extends BaseTest {
 
-    private ProjectsPageService projectsPageService;
+    private ProjectModalPageService projectModalPageService;
     private CurrentProjectPageService currentProjectPageService;
 
     @BeforeMethod
@@ -34,10 +35,11 @@ public class ProjectsTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
@@ -51,10 +53,11 @@ public class ProjectsTest extends BaseTest {
                 .accessType("Private")
                 .membersAccessType("Add members from specific group")
                 .build();
-        projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPrivateProject(project);
+        projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPrivateProject(project);
         currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
@@ -67,10 +70,11 @@ public class ProjectsTest extends BaseTest {
                 .description("Create new test public project")
                 .accessType("Public")
                 .build();
-        projectsPageService = new ProjectsPageService();
-        projectsPageService.createNewPublicProject(project);
+        projectModalPageService = new ProjectModalPageService();
+        projectModalPageService.createNewPublicProject(project);
         currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
+        ProjectsPageService projectsPageService = new ProjectsPageService();
         boolean isProjectNotDisplayed = projectsPageService.isProjectNotDisplayed(project.getName());
         projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isProjectNotDisplayed, "Projects have not been deleted");
