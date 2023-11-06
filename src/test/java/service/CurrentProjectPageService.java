@@ -53,7 +53,7 @@ public class CurrentProjectPageService {
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.openSuiteDropdown(label)
                 .clickDeleteSuiteButton()
-                .submitDeleteSuiteButton();
+                .clickSubmitDeleteButton();
         return this;
     }
 
@@ -63,5 +63,52 @@ public class CurrentProjectPageService {
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickCreateTestCaseButton();
         return this;
+    }
+
+    @Step("Open new create case form")
+    public CurrentProjectPageService openCreateCaseForm() {
+        log.info("Open new case modal form");
+        currentProjectPage = new CurrentProjectPage();
+        currentProjectPage.clickCreateTestCaseButton();
+        return this;
+    }
+
+    @Step("Check 'Create new case' button is displayed")
+    public boolean isNewCaseButtonDisplayed() {
+        log.info("Check 'Create new case' button is displayed");
+        currentProjectPage = new CurrentProjectPage();
+        return currentProjectPage.isCreateNewCaseButtonDisplayed();
+    }
+
+    @Step("Get new create new test case message")
+    public String getNewTestCaseTitle() {
+        log.info("Get new create new test case message");
+        currentProjectPage = new CurrentProjectPage();
+        return currentProjectPage.getNewTestCaseTitle();
+    }
+
+    @Step("Get test cases amount")
+    public int getTestCasesAmount() {
+        log.info("Get test cases amount");
+        currentProjectPage = new CurrentProjectPage();
+        return currentProjectPage.getTestCasesList().size();
+    }
+
+    @Step("Delete test case")
+    public CurrentProjectPageService deleteTestCase(String title, String text) {
+        log.info("Click test case checkbox");
+        currentProjectPage = new CurrentProjectPage();
+        currentProjectPage.clickTestCaseCheckbox(title)
+                .clickDeleteButton()
+                .clickSubmitDeleteButton()
+                .conformSubmitDeleteButton(text)
+                .clickSubmitDeleteButton();
+        return this;
+    }
+
+    @Step("Check test case is not displayed")
+    public boolean isNotDisplayed(){
+        currentProjectPage = new CurrentProjectPage();
+        return currentProjectPage.isTestCaseTitleNotDisplayed();
     }
 }
