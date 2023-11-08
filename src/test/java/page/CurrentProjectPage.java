@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import utils.Waiter;
 
-import java.time.Duration;
 import java.util.List;
 
 @Log4j2
@@ -39,6 +38,10 @@ public class CurrentProjectPage extends BasePage {
     WebElement conformSubmitDeleteButton;
     @FindBy(xpath = "//div[@class='WVGvc_ wq7uNh']")
     WebElement newTestCaseTitle;
+    @FindBy(xpath = "//i[@class='fa fa-ellipsis-h']")
+    WebElement suiteMenu;
+    @FindBy(xpath = "//div[@class='Cr3S77']//i[@class='far fa-pencil']")
+    WebElement suiteEdit;
 
     public String getProjectTitle() {
         log.warn("Get new project title");
@@ -100,6 +103,7 @@ public class CurrentProjectPage extends BasePage {
         log.warn("Check 'Create new case' button is displayed");
         return Waiter.waitVisibleOf(createNewCaseButton).isDisplayed();
     }
+
     public String getNewTestCaseTitle() {
         log.info("Get new create new test case message");
         return newTestCaseTitle.getText();
@@ -128,14 +132,26 @@ public class CurrentProjectPage extends BasePage {
         return this;
     }
 
-    public boolean isTestCaseTitleNotDisplayed() {
+    public boolean isCaseTitleNotDisplayed() {
         log.warn("Check test case is not displayed");
-        try{
+        try {
             Waiter.waitElementInvisibleOf(newTestCaseTitle);
             newTestCaseTitle.isDisplayed();
-        } catch(Exception exception){
+        } catch (Exception exception) {
             log.debug("Test case is displayed");
         }
         return true;
+    }
+
+    public CurrentProjectPage clickSuiteMenu() {
+        log.info("Click Suite menu");
+        Waiter.waitVisibleOf(suiteMenu).click();
+        return this;
+    }
+
+    public SuiteModalPage clickSuiteEdit() {
+        log.info("Click suite edit");
+        suiteEdit.click();
+        return new SuiteModalPage();
     }
 }

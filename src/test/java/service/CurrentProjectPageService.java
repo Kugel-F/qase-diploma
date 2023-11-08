@@ -108,7 +108,17 @@ public class CurrentProjectPageService {
 
     @Step("Check test case is not displayed")
     public boolean isNotDisplayed(){
+        log.info("Check test case is not displayed");
         currentProjectPage = new CurrentProjectPage();
-        return currentProjectPage.isTestCaseTitleNotDisplayed();
+        return currentProjectPage.isCaseTitleNotDisplayed();
+    }
+
+    @Step("Open suite modal page")
+    public CurrentProjectPageService openSuiteModalPage(){
+        log.info("Check test case is not displayed");
+        currentProjectPage = new CurrentProjectPage();
+        currentProjectPage.clickSuiteMenu()
+                .clickSuiteEdit();
+        return this;
     }
 }

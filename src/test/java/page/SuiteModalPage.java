@@ -21,6 +21,8 @@ public class SuiteModalPage extends BasePage {
     WebElement parentSuiteDropDown;
     @FindBy(xpath = "//input[@aria-autocomplete='list']")
     WebElement parentRootOption;
+    @FindBy(xpath = "//span[@class='ZwgkIF' and contains(text(),'Save')]")
+    WebElement saveButton;
 
     public SuiteModalPage inputSuiteName(String name) {
         log.info("Input new suite name: " + name);
@@ -49,6 +51,18 @@ public class SuiteModalPage extends BasePage {
     public CurrentProjectPage submitNewSuite() {
         log.info("Submit new suite creation");
         submitCreateSuiteButton.click();
+        return new CurrentProjectPage();
+    }
+
+    public SuiteModalPage deleteSuiteName() {
+        log.info("Delete exist suite name");
+        suiteNameInput.sendKeys(Keys.COMMAND+"a"+Keys.DELETE);
+        return this;
+    }
+
+    public CurrentProjectPage clickSaveButton() {
+        log.info("Click save button");
+        saveButton.click();
         return new CurrentProjectPage();
     }
 }

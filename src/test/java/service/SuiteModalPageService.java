@@ -24,4 +24,14 @@ public class SuiteModalPageService {
                 .submitNewSuite();
         return new SuiteModalPage();
     }
+
+    @Step("Edit suite name")
+    public SuiteModalPageService editSuiteTitle(String name) {
+        log.info("Edit suite name: " + name);
+        suiteModalPage = new SuiteModalPage();
+        suiteModalPage.deleteSuiteName()
+                .inputSuiteName(name)
+                .clickSaveButton();
+        return this;
+    }
 }
