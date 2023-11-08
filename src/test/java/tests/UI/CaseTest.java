@@ -26,7 +26,7 @@ public class CaseTest extends BaseTest {
         loginPageService.signIn(new User("mailundtest.1@gmail.com", ";sdt<TKFHECM13!"));
     }
 
-    @Test(description = "Create new test case without all required attributes")
+    @Test(description = "Create new test case without all required attributes", priority = 1)
     @Description("Create test case without required attributes")
     public void checkCreateNewTestCaseWithoutAllRequiredAttributesTest() {
         Project project = Project.builder()
@@ -48,7 +48,7 @@ public class CaseTest extends BaseTest {
         Assert.assertEquals(actualCaseTitle, testCase.getTitle(), "Test case don't been created");
     }
 
-    @Test(description = "Check current project page backspace possibility")
+    @Test(description = "Check current project page backspace possibility", priority = 4)
     @Description("Check backspace possibility")
     public void checkBackspacePossibilityTest() {
         Project project = Project.builder()
@@ -68,7 +68,7 @@ public class CaseTest extends BaseTest {
         Assert.assertTrue(isNewCaseButtonDisplayed, "Current project page is not opened");
     }
 
-    @Test(description = "Create two test cases")
+    @Test(description = "Create two test cases", priority = 3)
     @Description("Create two test cases")
     public void checkCreateTwoTestCasesTest() {
         Project project = Project.builder()
@@ -94,7 +94,7 @@ public class CaseTest extends BaseTest {
         Assert.assertEquals(actualTestCasesAmount, TWO, "Wrong test cases amount were created");
     }
 
-    @Test(description = "Check delete test case by name")
+    @Test(description = "Check delete test case by name", priority = 2, invocationCount = 2)
     @Description("Delete test case")
     public void checkDeleteTestCaseByNameTest() {
         Project project = Project.builder()

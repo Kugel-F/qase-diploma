@@ -27,7 +27,7 @@ public class ProjectsTest extends BaseTest {
                 .signIn(user);
     }
 
-    @Test(description = "Create new test project with public access")
+    @Test(description = "Create new test project with public access", priority = 1)
     @Description("Create public test project")
     public void checkCreateNewPublicProjectTest() {
         Project project = Project.builder()
@@ -44,7 +44,7 @@ public class ProjectsTest extends BaseTest {
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
-    @Test(description = "Create new test project with private access")
+    @Test(description = "Create new test project with private access", priority = 2)
     @Description("Create new private project")
     public void checkCreateNewPrivateProjectAsOwnerTest() {
         Project project = Project.builder()
@@ -62,7 +62,7 @@ public class ProjectsTest extends BaseTest {
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
-    @Test(description = "Remove project from project page")
+    @Test(description = "Remove project from project page", priority = 3)
     @Description("Remove project")
     public void checkRemoveProjectTest() {
         Project project = Project.builder()

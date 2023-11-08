@@ -24,8 +24,8 @@ public class LoginTest extends BaseTest {
         loginPageService.openLoginPage();
     }
 
-    @Test(priority = -1)
-    @Description("Check sign into the www.qase.io with valid data")
+    @Test(description = "Check sign into the www.qase.io with valid data", priority = -1)
+    @Description("Check sign in with valid data")
     public void checkSuccessfulSignInWithValidDataTest() {
         User user = new User("mailundtest.1@gmail.com", ";sdt<TKFHECM13!");
         loginPageService.signIn(user);
@@ -34,8 +34,8 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(expectedPageIsOpened, "Sign in failed");
     }
 
-    @Test()
-    @Description("Check sign into the www.qase.io without workEmail input")
+    @Test(description = "Check sign in to the www.qase.io without workEmail input")
+    @Description("Check sign in without workEmail input")
     public void checkEmailShouldBeRequired() {
         User user = new User(EMPTY_FIELD, ";sdt<TKFHECM13!");
         loginPageService.signIn(user);
@@ -43,8 +43,8 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE, "Message is not been displayed");
     }
 
-    @Test()
-    @Description("Check sign into the www.qase.io without password input")
+    @Test(description = "Check sign into the www.qase.io without password input")
+    @Description("Check sign in without password input")
     public void checkPasswordShouldBeRequiredTest() {
         User user = new User("mailundtest.1@gmail.com", EMPTY_FIELD);
         loginPageService.signIn(user);
@@ -52,7 +52,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualMessage, REQUIREMENT_FULFILL_MESSAGE, "Message is not been displayed");
     }
 
-    @Test()
+    @Test(description = "Check valid work email should be inputted")
     @Description("Check valid work email should be inputted")
     public void checkEmailShouldBeValidTest() {
         User user = new User("invalidEmail@gmail.com", ";sdt<TKFHECM13!");
@@ -61,7 +61,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(actualMessage, INVALID_DATA_MESSAGE, "Wrong message is displayed");
     }
 
-    @Test()
+    @Test(description = "Check valid password should be inputted")
     @Description("Check valid password should be inputted")
     public void checkPasswordShouldBeValidTest() {
         User user = new User("mailundtest.1@gmail.com", "111InvalidPassword111!");
