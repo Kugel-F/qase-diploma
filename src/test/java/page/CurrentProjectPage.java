@@ -62,17 +62,12 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isSuiteDisplayed(String title) {
         log.warn("Check new suite is displayed");
-        return Waiter.waitVisibleOf(driver.findElement(By.xpath(String.format(SUITE_TITLE, title)))).isDisplayed();
+        return isWebElementDisplayed(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
     }
 
     public boolean isSuiteNotDisplayed(String title) {
         log.warn("Check new suite is not been displayed");
-        try {
-            Waiter.waitElementInvisibleOf(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
-        } catch (Exception exception) {
-            log.debug("Project is on the page");
-        }
-        return true;
+        return isWebElementNotDisplayed(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
     }
 
     public CurrentProjectPage openSuiteDropdown(String label) {
@@ -101,7 +96,7 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isCreateNewCaseButtonDisplayed() {
         log.warn("Check 'Create new case' button is displayed");
-        return Waiter.waitVisibleOf(createNewCaseButton).isDisplayed();
+        return isWebElementDisplayed(createNewCaseButton);
     }
 
     public String getNewTestCaseTitle() {
@@ -134,13 +129,7 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isCaseTitleNotDisplayed() {
         log.warn("Check test case is not displayed");
-        try {
-            Waiter.waitElementInvisibleOf(newTestCaseTitle);
-            newTestCaseTitle.isDisplayed();
-        } catch (Exception exception) {
-            log.debug("Test case is displayed");
-        }
-        return true;
+        return isWebElementNotDisplayed(newTestCaseTitle);
     }
 
     public CurrentProjectPage clickSuiteMenu() {

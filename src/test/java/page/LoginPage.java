@@ -13,6 +13,7 @@ public class LoginPage extends BasePage {
     private static final String LOGIN_PAGE_URL = "https://app.qase.io/login";
     private static final String NEED_FULFILL_FIELD_MESSAGE = "//input[@type='%s']" +
             "//ancestor::div[@class='tdishH']//small";
+
     @FindBy(xpath = "//input[@type='text']")
     WebElement workEmailInput;
     @FindBy(xpath = "//input[@type='password']")

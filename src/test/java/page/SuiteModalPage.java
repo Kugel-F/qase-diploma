@@ -13,6 +13,7 @@ public class SuiteModalPage extends BasePage {
     public static final String PRECONDITIONS_LABEL = "Preconditions";
     private static final String SUITE_INPUT_DETAILS = "//label[contains(text(),'%s')]" +
             "//ancestor::div[@class='qaOPP6']//p";
+
     @FindBy(xpath = "//input[@id='title']")
     WebElement suiteNameInput;
     @FindBy(xpath = "//span[text()='Create']//ancestor::button")

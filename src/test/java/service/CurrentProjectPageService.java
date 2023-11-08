@@ -40,8 +40,8 @@ public class CurrentProjectPageService {
         return currentProjectPage.isSuiteDisplayed(title);
     }
 
-    @Step("Check new suite is displayed")
-    public boolean isSuiteIsNotDisplayed(String title) {
+    @Step("Check new suite is not displayed")
+    public boolean isSuiteNotDisplayed(String title) {
         log.info("Check suite is displayed");
         currentProjectPage = new CurrentProjectPage();
         return currentProjectPage.isSuiteNotDisplayed(title);

@@ -2,7 +2,9 @@ package page;
 
 import driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import utils.Waiter;
 
 public class BasePage {
 
@@ -10,5 +12,25 @@ public class BasePage {
 
     protected BasePage() {
         PageFactory.initElements(driver, this);
+    }
+
+    public boolean isWebElementNotDisplayed(WebElement element) {
+        try {
+            Waiter.waitElementInvisibleOf(element);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isWebElementDisplayed(WebElement element) {
+        try {
+            Waiter.waitVisibleOf(element).isDisplayed();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.Waiter;
 
 @Log4j2
 public class ProjectsPage extends BasePage {
@@ -53,11 +52,6 @@ public class ProjectsPage extends BasePage {
 
     public boolean isProjectNotDisplayed(String title) {
         log.info("Check project is not on the page");
-        try {
-            Waiter.waitElementInvisibleOf(driver.findElement(By.xpath(String.format(PROJECT_TITLE, title))));
-        } catch (Exception exception) {
-            log.debug("Project is on the page");
-        }
-        return true;
+        return isWebElementNotDisplayed(driver.findElement(By.xpath(String.format(PROJECT_TITLE, title))));
     }
 }
