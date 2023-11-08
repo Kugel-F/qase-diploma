@@ -56,7 +56,7 @@ public class SuiteModalPage extends BasePage {
 
     public SuiteModalPage deleteSuiteName() {
         log.info("Delete exist suite name");
-        suiteNameInput.sendKeys(Keys.COMMAND+"a"+Keys.DELETE);
+        suiteNameInput.sendKeys(Keys.COMMAND + "a" + Keys.DELETE);
         return this;
     }
 
