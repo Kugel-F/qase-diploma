@@ -11,6 +11,8 @@ pipeline {
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'develop', name: 'BRANCH', type: 'PT_BRANCH'
+        choice(name:'browser', choices:[chrome, firefox, safari], description: 'Choose browser for testing')
+        choice(name:'testNG-suite', choices:[testng-ui.xml, testng-api.xml], description: 'Choose suite for testing')
         booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
     }
@@ -23,7 +25,7 @@ pipeline {
 
             // Run Maven on a Unix agent.
             //sh "mvn clean test"
-            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke-ui.xml clean test"
+            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.browser} -Dsurefire.suiteXmlFiles=src/test/resources/{params.testNG-suite} clean test"
 
             // To run Maven on a Windows agent, use
 //             bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources
