@@ -11,8 +11,8 @@ pipeline {
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'develop', name: 'BRANCH', type: 'PT_BRANCH'
-        choice(name:'browser', choices:[chrome, firefox, safari], description: 'Choose browser for testing')
-        choice(name:'testNG-suite', choices:[testng-ui.xml, testng-api.xml], description: 'Choose suite for testing')
+        choice(name:'browser', choices:['chrome', 'firefox', 'safari'], description: 'Choose browser for testing')
+        choice(name:'testNG-suite', choices:['testng-ui.xml', 'testng-api.xml'], description: 'Choose suite for testing')
         booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
     }
