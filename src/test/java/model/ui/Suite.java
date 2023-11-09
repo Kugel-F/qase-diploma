@@ -1,4 +1,4 @@
-package model;
+package model.ui;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Project {
+@AllArgsConstructor
+public class Suite {
 
     private String name;
-    private String code;
+    private String parentSuite;
     private String description;
-    private String accessType;
-    private String membersAccessType;
+    private String preconditions;
 }

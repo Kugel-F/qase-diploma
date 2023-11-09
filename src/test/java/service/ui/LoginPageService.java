@@ -1,8 +1,8 @@
-package service;
+package service.ui;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import model.User;
+import model.ui.User;
 import page.LoginPage;
 
 @Log4j2

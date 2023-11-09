@@ -1,14 +1,14 @@
-package tests.UI;
+package tests.ui;
 
 import com.github.javafaker.Faker;
 import jdk.jfr.Description;
-import model.Project;
-import model.Suite;
-import model.User;
+import model.ui.Project;
+import model.ui.Suite;
+import model.ui.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.*;
+import service.ui.*;
 import tests.base.BaseTest;
 
 import static page.SuiteModalPage.DESCRIPTION_LABEL;

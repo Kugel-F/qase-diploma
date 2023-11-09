@@ -1,16 +1,16 @@
-package tests.UI;
+package tests.ui;
 
 import com.github.javafaker.Faker;
 import jdk.jfr.Description;
-import model.Project;
-import model.User;
+import model.ui.Project;
+import model.ui.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.CurrentProjectPageService;
-import service.LoginPageService;
-import service.ProjectModalPageService;
-import service.ProjectsPageService;
+import service.ui.CurrentProjectPageService;
+import service.ui.LoginPageService;
+import service.ui.ProjectModalPageService;
+import service.ui.ProjectsPageService;
 import tests.base.BaseTest;
 
 public class ProjectsTest extends BaseTest {

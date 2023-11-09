@@ -1,12 +1,12 @@
-package tests.UI;
+package tests.ui;
 
 import jdk.jfr.Description;
-import model.User;
+import model.ui.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import service.LoginPageService;
-import service.ProjectsPageService;
+import service.ui.LoginPageService;
+import service.ui.ProjectsPageService;
 import tests.base.BaseTest;
 
 import static page.LoginPage.EMAIL_LABEL;
