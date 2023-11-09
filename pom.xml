@@ -26,6 +26,9 @@
         <lombok.version>1.18.30</lombok.version>
         <log4j-core.version>2.20.0</log4j-core.version>
         <jackson-dataformat-yaml.version>2.15.2</jackson-dataformat-yaml.version>
+        <javafaker.version>0.15</javafaker.version>
+        <rest-assured.version>5.3.2</rest-assured.version>
+        <gson.version>2.10.1</gson.version>
     </properties>
 
     <build>
@@ -140,7 +143,20 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>0.15</version>
+            <version>${javafaker.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
         </dependency>
     </dependencies>
 
