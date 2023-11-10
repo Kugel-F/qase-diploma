@@ -1,6 +1,5 @@
 package tests.ui;
 
-import com.github.javafaker.Faker;
 import jdk.jfr.Description;
 import model.ui.Project;
 import model.ui.Suite;
@@ -13,6 +12,8 @@ import tests.base.BaseTest;
 
 import static page.SuiteModalPage.DESCRIPTION_LABEL;
 import static page.SuiteModalPage.PRECONDITIONS_LABEL;
+import static utils.DataGenerator.generateNewTitle;
+import static utils.DataGenerator.generateRandomStringExpression;
 
 public class SuiteTest extends BaseTest {
 
@@ -31,17 +32,17 @@ public class SuiteTest extends BaseTest {
     @Description("Create new suite")
     public void checkCreateNewSuiteTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
-                .name(new Faker().name().title())
-                .description("New test suite")
-                .preconditions("Some preconditions").build();
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
+                .preconditions(generateRandomStringExpression()).build();
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         currentProjectPageService = new CurrentProjectPageService();
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(suite.getName());
@@ -54,17 +55,17 @@ public class SuiteTest extends BaseTest {
     @Description("Delete new suite")
     public void checkDeleteNewSuiteTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
-                .name(new Faker().name().title())
-                .description("New test suite")
-                .preconditions("Some preconditions").build();
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
+                .preconditions(generateRandomStringExpression()).build();
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.deleteNewSuite(suite.getName());
@@ -78,21 +79,21 @@ public class SuiteTest extends BaseTest {
     @Description("Edit suite name")
     public void checkEditSuiteNameTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
-                .name(new Faker().name().title())
-                .description("New test suite")
-                .preconditions("Some preconditions").build();
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
+                .preconditions(generateRandomStringExpression()).build();
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openSuiteModalPage();
-        String newSuiteName = new Faker().name().title();
+        String newSuiteName = generateNewTitle();
         suiteModalPageService.editSuiteTitle(newSuiteName);
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(newSuiteName);
         ProjectsPageService projectsPageService = new ProjectsPageService();

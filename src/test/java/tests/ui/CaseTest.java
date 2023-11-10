@@ -1,6 +1,5 @@
 package tests.ui;
 
-import com.github.javafaker.Faker;
 import jdk.jfr.Description;
 import model.ui.Case;
 import model.ui.Project;
@@ -13,6 +12,8 @@ import tests.base.BaseTest;
 
 import static utils.Constants.CONFIRM;
 import static utils.Constants.TWO;
+import static utils.DataGenerator.generateNewTitle;
+import static utils.DataGenerator.generateRandomStringExpression;
 
 public class CaseTest extends BaseTest {
 
@@ -30,14 +31,14 @@ public class CaseTest extends BaseTest {
     @Description("Create test case without required attributes")
     public void checkCreateNewTestCaseWithoutAllRequiredAttributesTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         Case testCase = Case.builder()
-                .title(new Faker().name().title())
+                .title(generateNewTitle())
                 .build();
         createCasePageService = new CreateCasePageService();
         createCasePageService.createTestCaseWithoutAllRequireAttribute(testCase);
@@ -52,8 +53,8 @@ public class CaseTest extends BaseTest {
     @Description("Check backspace possibility")
     public void checkBackspacePossibilityTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
@@ -72,19 +73,19 @@ public class CaseTest extends BaseTest {
     @Description("Create two test cases")
     public void checkCreateTwoTestCasesTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         Case firstTestCase = Case.builder()
-                .title(new Faker().name().title())
+                .title(generateNewTitle())
                 .build();
         createCasePageService = new CreateCasePageService();
         createCasePageService.createTestCaseWithoutAllRequireAttribute(firstTestCase);
         Case secondTestCase = Case.builder()
-                .title(new Faker().name().title())
+                .title(generateNewTitle())
                 .build();
         createCasePageService.createTestCaseWithoutAllRequireAttribute(secondTestCase);
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
@@ -98,14 +99,14 @@ public class CaseTest extends BaseTest {
     @Description("Delete test case")
     public void checkDeleteTestCaseByNameTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         Case testCase = Case.builder()
-                .title(new Faker().name().title())
+                .title(generateNewTitle())
                 .build();
         createCasePageService = new CreateCasePageService();
         createCasePageService.createTestCaseWithoutAllRequireAttribute(testCase);

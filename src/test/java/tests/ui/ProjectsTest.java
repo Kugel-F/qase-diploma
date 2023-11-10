@@ -1,6 +1,5 @@
 package tests.ui;
 
-import com.github.javafaker.Faker;
 import jdk.jfr.Description;
 import model.ui.Project;
 import model.ui.User;
@@ -13,10 +12,12 @@ import service.ui.ProjectModalPageService;
 import service.ui.ProjectsPageService;
 import tests.base.BaseTest;
 
+import static utils.DataGenerator.generateNewTitle;
+import static utils.DataGenerator.generateRandomStringExpression;
+
 public class ProjectsTest extends BaseTest {
 
     private ProjectModalPageService projectModalPageService;
-    private CurrentProjectPageService currentProjectPageService;
 
     @BeforeMethod
     @Description("Sign into the www.qase.io")
@@ -31,13 +32,13 @@ public class ProjectsTest extends BaseTest {
     @Description("Create public test project")
     public void checkCreateNewPublicProjectTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
-        currentProjectPageService = new CurrentProjectPageService();
+        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
         ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
@@ -48,14 +49,14 @@ public class ProjectsTest extends BaseTest {
     @Description("Create new private project")
     public void checkCreateNewPrivateProjectAsOwnerTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test private project with owner's group members")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Private")
                 .membersAccessType("Add members from specific group")
                 .build();
         projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPrivateProject(project);
-        currentProjectPageService = new CurrentProjectPageService();
+        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
         ProjectsPageService projectsPageService = new ProjectsPageService();
         projectsPageService.removeProject(project.getName());
@@ -66,8 +67,8 @@ public class ProjectsTest extends BaseTest {
     @Description("Remove project")
     public void checkRemoveProjectTest() {
         Project project = Project.builder()
-                .name(new Faker().name().title())
-                .description("Create new test public project")
+                .name(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .accessType("Public")
                 .build();
         projectModalPageService = new ProjectModalPageService();
