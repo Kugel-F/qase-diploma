@@ -26,7 +26,7 @@ public class BasePage {
 
     public boolean isWebElementDisplayed(WebElement element) {
         try {
-            Waiter.waitVisibleOf(element).isDisplayed();
+            Waiter.waitElementVisibleOf(element).isDisplayed();
         } catch (Exception exception) {
             exception.printStackTrace();
             return false;

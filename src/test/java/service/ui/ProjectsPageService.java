@@ -2,6 +2,7 @@ package service.ui;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.WebElement;
 import page.ProjectsPage;
 
 @Log4j2
@@ -17,7 +18,7 @@ public class ProjectsPageService {
     }
 
     @Step("Remove project")
-    public ProjectsPageService removeProject(String title) {
+    public ProjectsPageService removeProjectByTitle(String title) {
         log.info("Remove project");
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
@@ -25,6 +26,21 @@ public class ProjectsPageService {
         projectsPage.clickProjectMenu(title)
                 .removeProject()
                 .confirmRemoveProject();
+        return this;
+    }
+
+    @Step("Remove all the projects")
+    public ProjectsPageService removeAllProject() {
+        log.info("Remove all the project");
+        CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
+        currentProjectPageService.openProjectsPage();
+        projectsPage = new ProjectsPage();
+        for (WebElement element : projectsPage.getTitleList()) {
+            currentProjectPageService.openProjectsPage();
+            projectsPage.clickProjectMenu(element.getText())
+                    .removeProject()
+                    .confirmRemoveProject();
+        }
         return this;
     }
 

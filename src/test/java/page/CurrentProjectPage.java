@@ -45,7 +45,7 @@ public class CurrentProjectPage extends BasePage {
 
     public String getProjectTitle() {
         log.warn("Get new project title");
-        return Waiter.waitVisibleOf(projectTitle).getText();
+        return Waiter.waitElementVisibleOf(projectTitle).getText();
     }
 
     public ProjectsPage openProjectsPage() {
@@ -56,7 +56,7 @@ public class CurrentProjectPage extends BasePage {
 
     public CurrentProjectPage clickCreateSuiteButton() {
         log.warn("Click create new suite button");
-        Waiter.waitVisibleOf(createNewSuiteButton).click();
+        Waiter.waitElementVisibleOf(createNewSuiteButton).click();
         return this;
     }
 
@@ -72,7 +72,7 @@ public class CurrentProjectPage extends BasePage {
 
     public CurrentProjectPage openSuiteDropdown(String label) {
         log.warn("Open suite dropdown menu");
-        Waiter.waitVisibleOf(driver.findElement(By.xpath(String.format(SUITE_DROPDOWN, label)))).click();
+        Waiter.waitElementVisibleOf(driver.findElement(By.xpath(String.format(SUITE_DROPDOWN, label)))).click();
         return this;
     }
 
@@ -106,7 +106,7 @@ public class CurrentProjectPage extends BasePage {
 
     public List<WebElement> getTestCasesList() {
         log.warn("Get test cases list");
-        return Waiter.waitVisibleALLOf(testCasesList);
+        return Waiter.waitElementVisibleALLOf(testCasesList);
     }
 
     public CurrentProjectPage clickTestCaseCheckbox(String title) {
@@ -134,7 +134,7 @@ public class CurrentProjectPage extends BasePage {
 
     public CurrentProjectPage clickSuiteMenu() {
         log.info("Click Suite menu");
-        Waiter.waitVisibleOf(suiteMenu).click();
+        Waiter.waitElementVisibleOf(suiteMenu).click();
         return this;
     }
 

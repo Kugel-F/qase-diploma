@@ -41,7 +41,7 @@ public class ProjectsTest extends BaseTest {
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
         ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
+        projectsPageService.removeProjectByTitle(project.getName());
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
@@ -59,7 +59,7 @@ public class ProjectsTest extends BaseTest {
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         String actualProjectTitle = currentProjectPageService.getProjectTitle();
         ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
+        projectsPageService.removeProjectByTitle(project.getName());
         Assert.assertEquals(actualProjectTitle, project.getName(), "Project don't created");
     }
 
@@ -74,7 +74,7 @@ public class ProjectsTest extends BaseTest {
         projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
         ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
+        projectsPageService.removeProjectByTitle(project.getName());
         boolean isProjectNotDisplayed = projectsPageService.isProjectNotDisplayed(project.getName());
         Assert.assertTrue(isProjectNotDisplayed, "Projects have not been deleted");
     }

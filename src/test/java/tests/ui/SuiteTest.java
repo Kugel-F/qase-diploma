@@ -5,6 +5,7 @@ import model.ui.Project;
 import model.ui.Suite;
 import model.ui.User;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.ui.*;
@@ -26,11 +27,6 @@ public class SuiteTest extends BaseTest {
         LoginPageService loginPageService = new LoginPageService();
         loginPageService.openLoginPage();
         loginPageService.signIn(new User("mailundtest.1@gmail.com", ";sdt<TKFHECM13!"));
-    }
-
-    @Test(description = "Create new suite in current project", priority = 1)
-    @Description("Create new suite")
-    public void checkCreateNewSuiteTest() {
         Project project = Project.builder()
                 .name(generateNewTitle())
                 .description(generateRandomStringExpression())
@@ -38,6 +34,11 @@ public class SuiteTest extends BaseTest {
                 .build();
         ProjectModalPageService projectModalPageService = new ProjectModalPageService();
         projectModalPageService.createNewPublicProject(project);
+    }
+
+    @Test(description = "Create new suite in current project", priority = 1)
+    @Description("Create new suite")
+    public void checkCreateNewSuiteTest() {
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
                 .name(generateNewTitle())
@@ -46,21 +47,12 @@ public class SuiteTest extends BaseTest {
         suiteModalPageService.createNewSuite(suite, DESCRIPTION_LABEL, PRECONDITIONS_LABEL);
         currentProjectPageService = new CurrentProjectPageService();
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(suite.getName());
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuiteDisplayed, "Suite has not been created");
     }
 
     @Test(description = "Delete new created suite", priority = 2, invocationCount = 2)
     @Description("Delete new suite")
     public void checkDeleteNewSuiteTest() {
-        Project project = Project.builder()
-                .name(generateNewTitle())
-                .description(generateRandomStringExpression())
-                .accessType("Public")
-                .build();
-        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
-        projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
                 .name(generateNewTitle())
@@ -70,21 +62,12 @@ public class SuiteTest extends BaseTest {
         currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.deleteNewSuite(suite.getName());
         boolean isSuitNotDisplayed = currentProjectPageService.isSuiteNotDisplayed(suite.getName());
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuitNotDisplayed, "Suite has not been deleted");
     }
 
     @Test(description = "Edit suite name", priority = 3)
     @Description("Edit suite name")
     public void checkEditSuiteNameTest() {
-        Project project = Project.builder()
-                .name(generateNewTitle())
-                .description(generateRandomStringExpression())
-                .accessType("Public")
-                .build();
-        ProjectModalPageService projectModalPageService = new ProjectModalPageService();
-        projectModalPageService.createNewPublicProject(project);
         suiteModalPageService = new SuiteModalPageService();
         Suite suite = Suite.builder()
                 .name(generateNewTitle())
@@ -96,8 +79,13 @@ public class SuiteTest extends BaseTest {
         String newSuiteName = generateNewTitle();
         suiteModalPageService.editSuiteTitle(newSuiteName);
         boolean isSuiteDisplayed = currentProjectPageService.isSuiteDisplayed(newSuiteName);
-        ProjectsPageService projectsPageService = new ProjectsPageService();
-        projectsPageService.removeProject(project.getName());
         Assert.assertTrue(isSuiteDisplayed, "Suite's name has not been changed");
+    }
+
+    @AfterMethod()
+    @Description("Remove all created projects")
+    public void cleanUp() {
+        ProjectsPageService projectsPageService = new ProjectsPageService();
+        projectsPageService.removeAllProject();
     }
 }

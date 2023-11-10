@@ -5,12 +5,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 @Log4j2
 public class ProjectsPage extends BasePage {
 
     private static final String PROJECT_MENU = "//a[contains(text(),'%s')]//ancestor::tr[@class='PX4acs']" +
             "//button[@class='j4xaa7 bB3U2Y TuZZEp']";
     private static final String PROJECT_TITLE = "//a[@class='MfvNFg' and contains(text(),'%s')]";
+    private static final String PROJECT_TITLE_TO_LIST = "//a[@class='MfvNFg']";
 
     @FindBy(xpath = "//button[@id='createButton']")
     WebElement createNewProjectButton;
@@ -53,5 +56,10 @@ public class ProjectsPage extends BasePage {
     public boolean isProjectNotDisplayed(String title) {
         log.info("Check project is not on the page");
         return isWebElementNotDisplayed(driver.findElement(By.xpath(String.format(PROJECT_TITLE, title))));
+    }
+
+    public List<WebElement> getTitleList() {
+        log.info("Check project is not on the page");
+        return driver.findElements(By.xpath(PROJECT_TITLE_TO_LIST));
     }
 }
