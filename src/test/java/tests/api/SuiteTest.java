@@ -68,6 +68,7 @@ public class SuiteTest {
                 .build();
         int suiteId = new SuiteAdapter().createNewSuiteTest(project.getCode(), suite).body().path("result.id");
         boolean resultId = new SuiteAdapter().deleteSuite(project.getCode(), suiteId).body().path("status");
+        new ProjectAdapter().deleteByCode(project.getCode());
         Assert.assertTrue(resultId, "Test suite don't been deleted");
     }
 }

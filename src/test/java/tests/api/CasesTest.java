@@ -79,6 +79,7 @@ public class CasesTest {
         int testcaseId = new TestCasesAdapter().createNewTestCase(project.getCode(), testCase).body()
                 .path("result.id");
         int statusCode = new TestCasesAdapter().deleteTestCase(project.getCode(), testcaseId).statusCode();
+        new ProjectAdapter().deleteByCode(project.getCode());
         Assert.assertEquals(statusCode, HTTP_OK, "Test case has not been deleted");
     }
 }
