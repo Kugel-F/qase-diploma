@@ -1,79 +1,84 @@
 package tests.api;
 
-import com.github.javafaker.Faker;
 import jdk.jfr.Description;
 import model.api.Project;
 import model.api.TestCase;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import service.api.ProjectAdapter;
 import service.api.TestCasesAdapter;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 import static utils.Constants.*;
+import static utils.DataGenerator.*;
 
 public class CasesTest {
-
-    @BeforeMethod(description = "Create new project")
-    public void setUp() {
-        Project project = Project.builder()
-                .title(new Faker().name().title())
-                .code("TEST")
-                .build();
-        new ProjectAdapter().createNewProject(project);
-    }
 
     @Test(description = "Check creating new test case", priority = 1)
     @Description("Create new test case")
     public void checkCreateNewTestCaseTest() {
+        Project project = Project.builder()
+                .title(generateNewTitle())
+                .code(generateNewCode())
+                .build();
+        new ProjectAdapter().createNewProject(project);
         TestCase testCase = TestCase.builder()
-                .title(new Faker().name().title())
-                .description("Some description")
-                .preconditions("Some preconditions")
-                .postconditions("Some postconditions")
+                .title(generateNewTitle())
+                .description(generateRandomStringExpression())
+                .preconditions(generateRandomStringExpression())
+                .postconditions(generateRandomStringExpression())
                 .severity(TWO)
                 .priority(ONE)
                 .build();
-        int resultId = new TestCasesAdapter().createNewTestCase(testCase).body().path("result.id");
+        int resultId = new TestCasesAdapter().createNewTestCase(project.getCode(), testCase)
+                .body().path("result.id");
+        new ProjectAdapter().deleteByCode(project.getCode());
         Assert.assertTrue(resultId > ZERO, "Test case has not been created");
     }
 
     @Test(description = "Check new test case can be updated", priority = 2)
     @Description("Update new test case")
     public void checkUpdateTestCaseTest() {
+        Project project = Project.builder()
+                .title(generateNewTitle())
+                .code(generateNewCode())
+                .build();
+        new ProjectAdapter().createNewProject(project);
         TestCase testCase = TestCase.builder()
-                .title(new Faker().name().title())
-                .description("Create new suite case")
+                .title(generateNewTitle())
+                .description(generateRandomStringExpression())
                 .priority(ONE)
                 .severity(TWO)
                 .build();
-        new TestCasesAdapter().createNewTestCase(testCase);
+        int resultTestCaseId = new TestCasesAdapter().createNewTestCase(project.getCode(), testCase).body()
+                .path("result.id");
         TestCase testCaseToUpdate = TestCase.builder()
-                .description("update test case description")
+                .description(generateRandomStringExpression())
                 .priority(ZERO)
                 .severity(THREE)
                 .build();
-        boolean resulStatus = new TestCasesAdapter().updateNewTestCase(Project.builder().build(),testCaseToUpdate)
+        boolean resulStatus = new TestCasesAdapter().updateNewTestCase(project.getCode(), resultTestCaseId,
+                        testCaseToUpdate)
                 .body().path("status");
+        new ProjectAdapter().deleteByCode(project.getCode());
         Assert.assertTrue(resulStatus, "Test case has not been updated");
     }
 
     @Test(description = "Check new test case can be deleted", priority = 3)
     @Description("Delete new test case")
     public void checkDeleteTestCaseTest() {
-        TestCase testCase = TestCase.builder()
-                .description("Create new suite case")
-                .title(new Faker().name().title())
+        Project project = Project.builder()
+                .title(generateNewTitle())
+                .code(generateNewCode())
                 .build();
-        int testcaseId =  new TestCasesAdapter().createNewTestCase(testCase).body().path("result.id");
-        int statusCode = new TestCasesAdapter().deleteTestCase("TEST", testcaseId).statusCode();
+        new ProjectAdapter().createNewProject(project);
+        TestCase testCase = TestCase.builder()
+                .description(generateRandomStringExpression())
+                .title(generateNewTitle())
+                .build();
+        int testcaseId = new TestCasesAdapter().createNewTestCase(project.getCode(), testCase).body()
+                .path("result.id");
+        int statusCode = new TestCasesAdapter().deleteTestCase(project.getCode(), testcaseId).statusCode();
         Assert.assertEquals(statusCode, HTTP_OK, "Test case has not been deleted");
-    }
-
-    @AfterMethod(description = "Remove project")
-    public void cleanUp() {
-        new ProjectAdapter().deleteByCode("TEST");
     }
 }

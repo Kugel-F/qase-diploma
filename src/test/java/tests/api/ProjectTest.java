@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import service.api.ProjectAdapter;
 
 import static java.net.HttpURLConnection.HTTP_OK;
+import static utils.DataGenerator.generateNewCode;
+import static utils.DataGenerator.generateNewTitle;
 
 public class ProjectTest {
 
@@ -22,8 +24,8 @@ public class ProjectTest {
     @Description("Check creation new project")
     public void checkCreationNewProjectTest() {
         Project project = Project.builder()
-                .title(new Faker().name().title())
-                .code("TEST")
+                .title(generateNewTitle())
+                .code(generateNewCode())
                 .build();
         String statusResultCode = new ProjectAdapter().createNewProject(project).body().path("result.code");
         new ProjectAdapter().deleteByCode(project.getCode());
@@ -34,8 +36,8 @@ public class ProjectTest {
     @Description("Check deleting new project")
     public void checkDeleteByCodeTest() {
         Project project = Project.builder()
-                .title(new Faker().name().title())
-                .code("TEST")
+                .title(generateNewTitle())
+                .code(generateNewCode())
                 .build();
         new ProjectAdapter().createNewProject(project);
         int statusCode = new ProjectAdapter().deleteByCode(project.getCode()).statusCode();
@@ -46,13 +48,13 @@ public class ProjectTest {
     @Description("Select project by code")
     public void checkSelectProjectByCodeTest() {
         Project firstProject = Project.builder()
-                .title(new Faker().name().title())
-                .code("TEST")
+                .title(generateNewTitle())
+                .code(generateNewCode())
                 .build();
         new ProjectAdapter().createNewProject(firstProject);
         Project secondProject = Project.builder()
                 .title(new Faker().name().title())
-                .code("CODE")
+                .code(generateNewCode())
                 .build();
         new ProjectAdapter().createNewProject(secondProject);
         String selectProjectTitle = new ProjectAdapter().getProjectsByParams(secondProject.getCode()).body()

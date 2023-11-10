@@ -50,13 +50,12 @@ public class BaseAdapter {
                         .extract().response();
     }
 
-    public Response patch(String path, String body, String url) {
+    public Response patch(String url, String body) {
         return
                 given()
                         .log().all()
                         .header(TOKEN_NAME, TOKEN_VALUE)
                         .header(CONTENT_TYPE, JSON)
-                        .basePath(path)
                         .body(body)
                         .when()
                         .patch(BASE_URL + url)
