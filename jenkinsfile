@@ -20,11 +20,7 @@ pipeline {
    stages {
       stage('Testing') {
          steps {
-            // Get some code from a GitHub repository
             git branch: "${params.BRANCH}", url: 'https://github.com/Kugel-F/qase-diploma.git'
-
-            // Run Maven on a Unix agent.
-            //sh "mvn clean test"
             sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.BROWSER} -Dsurefire.suiteXmlFiles={params.SUITE} clean test"
 
             // To run Maven on a Windows agent, use
@@ -33,8 +29,6 @@ pipeline {
          }
 
          post {
-            // If Maven was able to run the tests, even if some of the test
-            // failed, record the test results and archive the jar file.
             success {
                junit '**/target/surefire-reports/TEST-*.xml'
             }
@@ -47,7 +41,7 @@ pipeline {
                              includeProperties: false,
                              jdk: '',
                              properties: [],
-                             reportBuildPolicy: 'ALWAYS',
+                             allowEmptyResults: true,
                              results: [[path: 'target/allure-results']]
                      ])
              }
