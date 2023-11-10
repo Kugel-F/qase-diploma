@@ -23,13 +23,13 @@ public class Waiter {
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public static WebElement waitVisibleOf(WebElement element) {
+    public static WebElement waitElementVisibleOf(WebElement element) {
 
         return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static List<WebElement> waitVisibleALLOf(List<WebElement> elements) {
+    public static List<WebElement> waitElementVisibleALLOf(List<WebElement> elements) {
 
         return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_10_SECONDS))
                 .until(ExpectedConditions.visibilityOfAllElements(elements));
