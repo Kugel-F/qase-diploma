@@ -12,7 +12,7 @@ pipeline {
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'develop', name: 'BRANCH', type: 'PT_BRANCH'
         choice(name:'BROWSER', choices:['chrome', 'firefox', 'safari'], description: 'Choose browser for testing')
-        choice(name:'SUITE', choices:['src/test/resources/testng-ui.xml', 'src/test/resources/testng-api.xml'], description: 'Choose suite for testing')
+//        choice(name:'SUITE', choices:['src/test/resources/testng-ui.xml', 'src/test/resources/testng-api.xml'], description: 'Choose suite for testing')
         booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
     }
@@ -21,7 +21,7 @@ pipeline {
       stage('Testing') {
          steps {
             git branch: "${params.BRANCH}", url: 'https://github.com/Kugel-F/qase-diploma.git'
-            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.BROWSER} -Dsurefire.suiteXmlFiles={params.SUITE} clean test"
+            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.BROWSER} -Dsurefire.suiteXmlFiles=src/test/resources/testng-api.xml clean test"
 
             // To run Maven on a Windows agent, use
 //             bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources
@@ -41,7 +41,7 @@ pipeline {
                              includeProperties: false,
                              jdk: '',
                              properties: [],
-                             allowEmptyResults: true,
+                             reportBuildPolicy: 'ALWAYS',
                              results: [[path: 'target/allure-results']]
                      ])
              }
