@@ -3,7 +3,8 @@
 
 <suite name="SmokeTest" parallel="tests" thread-count="3">
 
-    <test name="Firefox testing">
+    <test name="UI-firefox-testing">
+        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
@@ -12,7 +13,9 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-    <test name="Chrome testing">
+
+    <test name="UI-chrome-testing">
+        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
@@ -21,7 +24,9 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-    <test name="Safari testing">
+
+    <test name="UI-safari-testing">
+        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="safari"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
@@ -30,4 +35,38 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
+
+    <test name="API-firefox-testing">
+        <parameter name="suite" value="">"ui"</parameter>
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.api.ProjectTest"/>
+            <class name="tests.api.CasesTest"/>
+            <class name="tests.api.SuiteTest"/>
+            <class name="tests.api.RunTest"/>
+        </classes>
+    </test>
+
+    <test name="API-chrome-testing">
+        <parameter name="suite" value="">"ui"</parameter>
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.api.ProjectTest"/>
+            <class name="tests.api.CasesTest"/>
+            <class name="tests.api.SuiteTest"/>
+            <class name="tests.api.RunTest"/>
+        </classes>
+    </test>
+
+    <test name="API-safari-testing">
+        <parameter name="suite" value="">"ui"</parameter>
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="tests.api.ProjectTest"/>
+            <class name="tests.api.CasesTest"/>
+            <class name="tests.api.SuiteTest"/>
+            <class name="tests.api.RunTest"/>
+        </classes>
+    </test>
+
 </suite>
