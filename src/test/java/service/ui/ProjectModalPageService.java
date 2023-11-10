@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import model.ui.Project;
 import page.ProjectModalPage;
 import page.ProjectsPage;
-import service.ui.CurrentProjectPageService;
 
 @Log4j2
 public class ProjectModalPageService {
