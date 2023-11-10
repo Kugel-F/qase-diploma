@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Waiter;
 
 @Log4j2
 public class ProjectModalPage extends BasePage {
@@ -54,8 +55,8 @@ public class ProjectModalPage extends BasePage {
     }
 
     public CurrentProjectPage submitProjectCreating() {
-        log.info("Submit new project creating");
-        submitNewProject.click();
+        log.warn("Submit new project creating");
+        Waiter.waitVisibleOf(submitNewProject).click();
         return new CurrentProjectPage();
     }
 }
