@@ -1,60 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="SmokeTest" parallel="tests" thread-count="4">
+<suite name="SmokeTest" parallel="tests" thread-count="3">
 
-    <test name="Login Tests">
+    <test name="Firefox testing">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
-        </classes>
-    </test>
-    <test name="Project Tests">
-        <classes>
             <class name="tests.ui.ProjectsTest"/>
-        </classes>
-    </test>
-    <test name="Suite Tests">
-        <classes>
             <class name="tests.ui.SuiteTest"/>
+            <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-    <test name="Case Tests">
+    <test name="Chrome testing">
+        <parameter name="browser" value="chrome"/>
         <classes>
+            <class name="tests.ui.LoginTest"/>
+            <class name="tests.ui.ProjectsTest"/>
+            <class name="tests.ui.SuiteTest"/>
+            <class name="tests.ui.CaseTest"/>
+        </classes>
+    </test>
+    <test name="Safari testing">
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="tests.ui.LoginTest"/>
+            <class name="tests.ui.ProjectsTest"/>
+            <class name="tests.ui.SuiteTest"/>
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
 </suite>
-
-<!--<suite name="SmokeTest" parallel="tests" thread-count="2">-->
-
-<!--    <test name="Firefox testing">-->
-<!--        <parameter name="browser" value="Firefox"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.ui.LoginTest"/>-->
-<!--&lt;!&ndash;            <class name="tests.ui.ProjectsTest"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.ui.SuiteTest"/>&ndash;&gt;-->
-<!--            <class name="tests.ui.CaseTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    <test name="Chrome testing">-->
-<!--        <parameter name="browser" value="Chrome"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.ui.LoginTest"/>-->
-<!--&lt;!&ndash;            <class name="tests.ui.ProjectsTest"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="tests.ui.SuiteTest"/>&ndash;&gt;-->
-<!--            <class name="tests.ui.CaseTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    <test name="Safari testing">-->
-<!--    <parameter name="browser" value="Safari"/>-->
-<!--        <classes>-->
-<!--            <class name="tests.ui.LoginTest"/>-->
-<!--        &lt;!&ndash;            <class name="tests.ui.ProjectsTest"/>&ndash;&gt;-->
-<!--        &lt;!&ndash;            <class name="tests.ui.SuiteTest"/>&ndash;&gt;-->
-<!--            <class name="tests.ui.CaseTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--</suite>-->

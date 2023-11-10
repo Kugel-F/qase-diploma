@@ -21,7 +21,7 @@ pipeline {
       stage('Testing') {
          steps {
             git branch: "${params.BRANCH}", url: 'https://github.com/Kugel-F/qase-diploma.git'
-            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.BROWSER} -Dsurefire.suiteXmlFiles=src/test/resources/testng-api.xml clean test"
+            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser={params.BROWSER} -Dsurefire.suiteXmlFiles={params.SUITE} clean test"
 
             // To run Maven on a Windows agent, use
 //             bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources

@@ -26,8 +26,8 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-    log.info(String.format("\n" + "          ===== FINISHED TEST %s Duration: %ss =====", iTestResult.getName(),
-            getExecutionTime(iTestResult)));
+        log.info(String.format("\n" + "          ===== FINISHED TEST %s Duration: %ss =====", iTestResult.getName(),
+                getExecutionTime(iTestResult)));
     }
 
     @Override
