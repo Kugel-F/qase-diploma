@@ -50,7 +50,7 @@ public class ProjectModalPage extends BasePage {
 
     public ProjectModalPage chooseOwnerGroupMember() {
         log.info("Choose owner's group member");
-        ownerGroupMember.sendKeys(Keys.ENTER);
+        Waiter.waitElementVisibleOf(ownerGroupMember).sendKeys(Keys.ENTER);
         return this;
     }
 
