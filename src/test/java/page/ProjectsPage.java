@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Waiter;
 
 import java.util.List;
 
@@ -43,13 +44,13 @@ public class ProjectsPage extends BasePage {
 
     public ProjectsPage removeProject() {
         log.info("Remove current project");
-        removeButton.click();
+        Waiter.waitElementToBeClickable(removeButton).click();
         return this;
     }
 
     public ProjectsPage confirmRemoveProject() {
         log.info("Confirm remove project");
-        confirmRemoveButton.click();
+        Waiter.waitElementToBeClickable(confirmRemoveButton).click();
         return this;
     }
 
