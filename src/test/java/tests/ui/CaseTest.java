@@ -37,7 +37,7 @@ public class CaseTest extends BaseTest {
 
     @Test(description = "Create new test case without all required attributes", priority = 1)
     @Description("Create test case without required attributes")
-    public void checkCreateNewTestCaseWithoutAllRequiredAttributesTest() {
+    public void checkCreateNewTestCaseWithoutRequiredAttributesTest() {
         Case testCase = Case.builder()
                 .title(generateNewTitle())
                 .build();
