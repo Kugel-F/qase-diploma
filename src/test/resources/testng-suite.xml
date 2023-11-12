@@ -13,7 +13,6 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-
     <test name="UI-chrome-testing">
         <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="chrome"/>
@@ -24,7 +23,6 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-
     <test name="UI-safari-testing">
         <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="safari"/>
@@ -35,38 +33,24 @@
             <class name="tests.ui.CaseTest"/>
         </classes>
     </test>
-
-    <test name="API-firefox-testing">
-        <parameter name="suite" value="">"ui"</parameter>
-        <parameter name="browser" value="firefox"/>
+    <test name="API-ProjectTest">
         <classes>
             <class name="tests.api.ProjectTest"/>
+        </classes>
+    </test>
+    <test name="API-CasesTest">
+        <classes>
             <class name="tests.api.CasesTest"/>
+        </classes>
+    </test>
+    <test name="API-SuiteTest">
+        <classes>
             <class name="tests.api.SuiteTest"/>
+        </classes>
+    </test>
+    <test name="API-RunTest">
+        <classes>
             <class name="tests.api.RunTest"/>
         </classes>
     </test>
-
-    <test name="API-chrome-testing">
-        <parameter name="suite" value="">"ui"</parameter>
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="tests.api.ProjectTest"/>
-            <class name="tests.api.CasesTest"/>
-            <class name="tests.api.SuiteTest"/>
-            <class name="tests.api.RunTest"/>
-        </classes>
-    </test>
-
-    <test name="API-safari-testing">
-        <parameter name="suite" value="">"ui"</parameter>
-        <parameter name="browser" value="safari"/>
-        <classes>
-            <class name="tests.api.ProjectTest"/>
-            <class name="tests.api.CasesTest"/>
-            <class name="tests.api.SuiteTest"/>
-            <class name="tests.api.RunTest"/>
-        </classes>
-    </test>
-
 </suite>
