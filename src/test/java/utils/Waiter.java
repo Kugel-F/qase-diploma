@@ -1,8 +1,6 @@
 package utils;
 
 import driver.DriverSingleton;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,12 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-@NoArgsConstructor
-@Getter
 public class Waiter {
 
     public final static int WAIT_5_SECONDS = 5;
     public final static int WAIT_10_SECONDS = 10;
+
+    private Waiter() {
+    }
 
     public static WebElement waitElementToBeClickable(WebElement element) {
 
