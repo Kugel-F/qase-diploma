@@ -18,13 +18,13 @@ public class LoginPageService {
     }
 
     @Step("Sign into the qase.io")
-    public ProjectsPageService signIn(User user) {
+    public void signIn(User user) {
         log.info("Sign into the qase.io with user: " + user + " data");
         loginPage = new LoginPage();
         loginPage.emailInput(user.getEmail())
                 .passwordInput(user.getPassword())
                 .clickSignInButton();
-        return new ProjectsPageService();
+        new ProjectsPageService();
     }
 
     @Step("Get message about fulfilling workEmail field")

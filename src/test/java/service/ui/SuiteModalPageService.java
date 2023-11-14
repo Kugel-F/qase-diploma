@@ -11,7 +11,7 @@ public class SuiteModalPageService {
     private SuiteModalPage suiteModalPage;
 
     @Step("Create new suite")
-    public SuiteModalPage createNewSuite(Suite suite, String descriptionLabel, String preconditionLabel) {
+    public void createNewSuite(Suite suite, String descriptionLabel, String preconditionLabel) {
         log.info("Create new suite");
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openSuiteModalForm();
@@ -22,16 +22,15 @@ public class SuiteModalPageService {
                 .inputSuiteDetails(descriptionLabel, suite.getDescription())
                 .inputSuiteDetails(preconditionLabel, suite.getPreconditions())
                 .submitNewSuite();
-        return new SuiteModalPage();
+        new SuiteModalPage();
     }
 
     @Step("Edit suite name")
-    public SuiteModalPageService editSuiteTitle(String name) {
+    public void editSuiteTitle(String name) {
         log.info("Edit suite name: " + name);
         suiteModalPage = new SuiteModalPage();
         suiteModalPage.deleteSuiteName()
                 .inputSuiteName(name)
                 .clickSaveButton();
-        return this;
     }
 }

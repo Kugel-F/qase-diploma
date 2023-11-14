@@ -18,19 +18,18 @@ public class CurrentProjectPageService {
     }
 
     @Step("Open projects page")
-    public CurrentProjectPageService openProjectsPage() {
+    public void openProjectsPage() {
         log.info("Open projects page");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.openProjectsPage();
-        return this;
     }
 
     @Step("Open new suite modal form")
-    public SuiteModalPage openSuiteModalForm() {
+    public void openSuiteModalForm() {
         log.info("Open new suite modal form");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickCreateSuiteButton();
-        return new SuiteModalPage();
+        new SuiteModalPage();
     }
 
     @Step("Check new suite is displayed")
@@ -48,29 +47,26 @@ public class CurrentProjectPageService {
     }
 
     @Step("Delete suite")
-    public CurrentProjectPageService deleteNewSuite(String label) {
+    public void deleteNewSuite(String label) {
         log.info("Delete suite");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.openSuiteDropdown(label)
                 .clickDeleteSuiteButton()
                 .clickSubmitDeleteButton();
-        return this;
     }
 
     @Step("Open create test case page")
-    public CurrentProjectPageService clickCreateTestCaseButton() {
+    public void clickCreateTestCaseButton() {
         log.info("Open create test case page");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickCreateTestCaseButton();
-        return this;
     }
 
     @Step("Open new create case form")
-    public CurrentProjectPageService openCreateCaseForm() {
+    public void openCreateCaseForm() {
         log.info("Open new case modal form");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickCreateTestCaseButton();
-        return this;
     }
 
     @Step("Check 'Create new case' button is displayed")
@@ -95,7 +91,7 @@ public class CurrentProjectPageService {
     }
 
     @Step("Delete test case")
-    public CurrentProjectPageService deleteTestCase(String title, String text) {
+    public void deleteTestCase(String title, String text) {
         log.info("Click test case checkbox");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickTestCaseCheckbox(title)
@@ -103,7 +99,6 @@ public class CurrentProjectPageService {
                 .clickSubmitDeleteButton()
                 .conformSubmitDeleteButton(text)
                 .clickSubmitDeleteButton();
-        return this;
     }
 
     @Step("Check test case is not displayed")
@@ -114,11 +109,10 @@ public class CurrentProjectPageService {
     }
 
     @Step("Open suite modal page")
-    public CurrentProjectPageService openSuiteModalPage() {
+    public void openSuiteModalPage() {
         log.info("Check test case is not displayed");
         currentProjectPage = new CurrentProjectPage();
         currentProjectPage.clickSuiteMenu()
                 .clickSuiteEdit();
-        return this;
     }
 }

@@ -20,15 +20,14 @@ public class CreateCasePage extends BasePage {
         return this;
     }
 
-    public CreateCasePage clickTestCaseSaveButton() {
+    public void clickTestCaseSaveButton() {
         log.info("Click test case button");
         testCaseSaveButton.click();
-        return this;
     }
 
-    public CurrentProjectPage clickBackSpaceLink() {
+    public void clickBackSpaceLink() {
         log.info("Click backspaceLink");
         backspaceLink.click();
-        return new CurrentProjectPage();
+        new CurrentProjectPage();
     }
 }

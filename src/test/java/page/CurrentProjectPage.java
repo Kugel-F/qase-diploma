@@ -48,16 +48,15 @@ public class CurrentProjectPage extends BasePage {
         return Waiter.waitElementVisibleOf(projectTitle).getText();
     }
 
-    public ProjectsPage openProjectsPage() {
+    public void openProjectsPage() {
         log.info("Open projects page");
         projectsPageLink.click();
-        return new ProjectsPage();
+        new ProjectsPage();
     }
 
-    public CurrentProjectPage clickCreateSuiteButton() {
+    public void clickCreateSuiteButton() {
         log.info("Click create new suite button");
         Waiter.waitElementVisibleOf(createNewSuiteButton).click();
-        return this;
     }
 
     public boolean isSuiteDisplayed(String title) {
@@ -88,10 +87,10 @@ public class CurrentProjectPage extends BasePage {
         return this;
     }
 
-    public CreateCasePage clickCreateTestCaseButton() {
+    public void clickCreateTestCaseButton() {
         log.info("Click create case button");
         createNewCaseButton.click();
-        return new CreateCasePage();
+        new CreateCasePage();
     }
 
     public boolean isCreateNewCaseButtonDisplayed() {
@@ -138,9 +137,9 @@ public class CurrentProjectPage extends BasePage {
         return this;
     }
 
-    public SuiteModalPage clickSuiteEdit() {
+    public void clickSuiteEdit() {
         log.info("Click suite edit");
         suiteEdit.click();
-        return new SuiteModalPage();
+        new SuiteModalPage();
     }
 }

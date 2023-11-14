@@ -18,7 +18,7 @@ public class ProjectsPageService {
     }
 
     @Step("Remove project")
-    public ProjectsPageService removeProjectByTitle(String title) {
+    public void removeProjectByTitle(String title) {
         log.info("Remove project");
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
@@ -26,11 +26,10 @@ public class ProjectsPageService {
         projectsPage.clickProjectMenu(title)
                 .removeProject()
                 .confirmRemoveProject();
-        return this;
     }
 
     @Step("Remove all the projects")
-    public ProjectsPageService removeAllProject() {
+    public void removeAllProject() {
         log.info("Remove all the project");
         CurrentProjectPageService currentProjectPageService = new CurrentProjectPageService();
         currentProjectPageService.openProjectsPage();
@@ -41,7 +40,6 @@ public class ProjectsPageService {
                     .removeProject()
                     .confirmRemoveProject();
         }
-        return this;
     }
 
     @Step("Check project is not on the page")

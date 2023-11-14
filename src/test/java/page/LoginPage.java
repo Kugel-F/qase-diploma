@@ -23,10 +23,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//span[@class='ic9QAx']")
     WebElement invalidDataMessage;
 
-    public LoginPage openPage() {
+    public void openPage() {
         log.info("Open www.qase.io");
         driver.get(LOGIN_PAGE_URL);
-        return this;
     }
 
     public LoginPage emailInput(String workEmail) {
@@ -41,10 +40,10 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public ProjectsPage clickSignInButton() {
+    public void clickSignInButton() {
         log.info("Click 'Sign in' button");
         signInButton.click();
-        return new ProjectsPage();
+        new ProjectsPage();
     }
 
     public String getRequirementFulfillFieldMessageText(String Label) {

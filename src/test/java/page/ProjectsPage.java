@@ -30,10 +30,10 @@ public class ProjectsPage extends BasePage {
         return projectPageTitle.isDisplayed();
     }
 
-    public ProjectModalPage clickCreateNewProjectButton() {
+    public void clickCreateNewProjectButton() {
         log.info("Click new project button");
         createNewProjectButton.click();
-        return new ProjectModalPage();
+        new ProjectModalPage();
     }
 
     public ProjectsPage clickProjectMenu(String title) {
@@ -48,10 +48,9 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
-    public ProjectsPage confirmRemoveProject() {
+    public void confirmRemoveProject() {
         log.info("Confirm remove project");
         Waiter.waitElementToBeClickable(confirmRemoveButton).click();
-        return this;
     }
 
     public boolean isProjectNotDisplayed(String title) {

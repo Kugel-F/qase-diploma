@@ -49,10 +49,10 @@ public class SuiteModalPage extends BasePage {
         return this;
     }
 
-    public CurrentProjectPage submitNewSuite() {
+    public void submitNewSuite() {
         log.info("Submit new suite creation");
         submitCreateSuiteButton.click();
-        return new CurrentProjectPage();
+        new CurrentProjectPage();
     }
 
     public SuiteModalPage deleteSuiteName() {
@@ -61,9 +61,9 @@ public class SuiteModalPage extends BasePage {
         return this;
     }
 
-    public CurrentProjectPage clickSaveButton() {
+    public void clickSaveButton() {
         log.info("Click save button");
         saveButton.click();
-        return new CurrentProjectPage();
+        new CurrentProjectPage();
     }
 }
