@@ -26,7 +26,7 @@ public class ProjectsPage extends BasePage {
     WebElement confirmRemoveButton;
 
     public boolean isProjectPageTitleDisplayed() {
-        log.info("Check project page title is displayed");
+        log.warn("Check project page title is displayed");
         return projectPageTitle.isDisplayed();
     }
 
@@ -55,7 +55,7 @@ public class ProjectsPage extends BasePage {
     }
 
     public boolean isProjectNotDisplayed(String title) {
-        log.info("Check project is not on the page");
+        log.warn("Check project is not on the page");
         return isWebElementNotDisplayed(driver.findElement(By.xpath(String.format(PROJECT_TITLE, title))));
     }
 

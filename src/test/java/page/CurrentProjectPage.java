@@ -44,7 +44,7 @@ public class CurrentProjectPage extends BasePage {
     WebElement suiteEdit;
 
     public String getProjectTitle() {
-        log.warn("Get new project title");
+        log.info("Get new project title");
         return Waiter.waitElementVisibleOf(projectTitle).getText();
     }
 
@@ -55,7 +55,7 @@ public class CurrentProjectPage extends BasePage {
     }
 
     public CurrentProjectPage clickCreateSuiteButton() {
-        log.warn("Click create new suite button");
+        log.info("Click create new suite button");
         Waiter.waitElementVisibleOf(createNewSuiteButton).click();
         return this;
     }
@@ -71,19 +71,19 @@ public class CurrentProjectPage extends BasePage {
     }
 
     public CurrentProjectPage openSuiteDropdown(String label) {
-        log.warn("Open suite dropdown menu");
+        log.info("Open suite dropdown menu");
         Waiter.waitElementVisibleOf(driver.findElement(By.xpath(String.format(SUITE_DROPDOWN, label)))).click();
         return this;
     }
 
     public CurrentProjectPage clickDeleteSuiteButton() {
-        log.warn("Click delete suite button");
+        log.info("Click delete suite button");
         deleteSuiteButton.click();
         return this;
     }
 
     public CurrentProjectPage clickSubmitDeleteButton() {
-        log.warn("Click submit deleting button");
+        log.info("Click submit deleting button");
         submitDeleteButton.click();
         return this;
     }
@@ -105,7 +105,7 @@ public class CurrentProjectPage extends BasePage {
     }
 
     public List<WebElement> getTestCasesList() {
-        log.warn("Get test cases list");
+        log.info("Get test cases list");
         return Waiter.waitElementVisibleALLOf(testCasesList);
     }
 

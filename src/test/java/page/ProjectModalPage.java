@@ -55,7 +55,7 @@ public class ProjectModalPage extends BasePage {
     }
 
     public CurrentProjectPage submitProjectCreating() {
-        log.warn("Submit new project creating");
+        log.info("Submit new project creating");
         Waiter.waitElementVisibleOf(submitNewProject).click();
         return new CurrentProjectPage();
     }
