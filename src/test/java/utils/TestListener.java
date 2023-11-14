@@ -1,4 +1,4 @@
-package tests.base;
+package utils;
 
 import driver.DriverSingleton;
 import io.qameta.allure.Attachment;
