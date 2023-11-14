@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Waiter;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected WebDriver driver = DriverSingleton.getInstance().getDriver();
 
