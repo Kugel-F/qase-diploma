@@ -4,7 +4,6 @@
 <suite name="SmokeTest" parallel="tests" thread-count="3">
 
     <test name="UI-firefox-testing">
-        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
@@ -14,7 +13,6 @@
         </classes>
     </test>
     <test name="UI-chrome-testing">
-        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
@@ -24,7 +22,6 @@
         </classes>
     </test>
     <test name="UI-safari-testing">
-        <parameter name="suite" value="">"ui"</parameter>
         <parameter name="browser" value="safari"/>
         <classes>
             <class name="tests.ui.LoginTest"/>
