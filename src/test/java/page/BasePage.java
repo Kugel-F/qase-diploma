@@ -18,17 +18,6 @@ public abstract class BasePage {
         try {
             Waiter.waitElementInvisibleOf(element);
         } catch (Exception exception) {
-            exception.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isWebElementDisplayed(WebElement element) {
-        try {
-            Waiter.waitElementVisibleOf(element).isDisplayed();
-        } catch (Exception exception) {
-            exception.printStackTrace();
             return false;
         }
         return true;

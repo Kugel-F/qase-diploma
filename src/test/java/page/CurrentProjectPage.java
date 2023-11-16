@@ -61,7 +61,7 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isSuiteDisplayed(String title) {
         log.warn("Check new suite is displayed");
-        return isWebElementDisplayed(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
+        return !isWebElementNotDisplayed(driver.findElement(By.xpath(String.format(SUITE_TITLE, title))));
     }
 
     public boolean isSuiteNotDisplayed(String title) {
@@ -95,7 +95,7 @@ public class CurrentProjectPage extends BasePage {
 
     public boolean isCreateNewCaseButtonDisplayed() {
         log.warn("Check 'Create new case' button is displayed");
-        return isWebElementDisplayed(createNewCaseButton);
+        return !isWebElementNotDisplayed(createNewCaseButton);
     }
 
     public String getNewTestCaseTitle() {

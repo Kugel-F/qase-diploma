@@ -27,7 +27,7 @@ public class ProjectsPage extends BasePage {
 
     public boolean isProjectPageTitleDisplayed() {
         log.warn("Check project page title is displayed");
-        return projectPageTitle.isDisplayed();
+        return !isWebElementNotDisplayed(projectPageTitle);
     }
 
     public void clickCreateNewProjectButton() {
